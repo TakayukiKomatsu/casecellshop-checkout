@@ -1,0 +1,38 @@
+{
+  "name": "casecellshop-checkout",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter api --filter web dev",
+    "build": "pnpm -r --filter api --filter web build",
+    "lint": "pnpm -r --filter api --filter web lint",
+    "typecheck": "pnpm -r --filter api --filter web typecheck",
+    "test": "pnpm --filter api test && pnpm --filter api test:e2e && pnpm --filter web test",
+    "db:migrate": "pnpm --filter api db:migrate",
+    "db:migrate:test": "pnpm --filter api db:migrate:test",
+    "db:revert": "pnpm --filter api db:revert",
+    "db:revert:test": "pnpm --filter api db:revert:test",
+    "db:seed": "pnpm --filter api db:seed",
+    "db:seed:test": "pnpm --filter api db:seed:test",
+    "db:reset:test": "pnpm --filter api db:reset:test",
+    "e2e": "concurrently --kill-others --success command-tests --names postgres,tests \"docker compose up postgres\" \"wait-on tcp:127.0.0.1:5432 && pnpm e2e:scenarios\"",
+    "e2e:scenarios": "pnpm e2e:success && pnpm e2e:scripted && pnpm e2e:paused",
+    "e2e:web": "cross-env NEXT_PUBLIC_API_URL=http://127.0.0.1:3001 pnpm --filter web dev --hostname 127.0.0.1 --port 3000",
+    "e2e:api:success": "cross-env DATABASE_URL=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop_test DATABASE_URL_TEST=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop WORKER_POLL_MS=50 ERP_SIMULATION_DELAY_MS=750 ERP_SIMULATION_MODE=success ERP_SIMULATION_SCRIPT=failure,success pnpm --filter api start",
+    "e2e:api:scripted": "cross-env DATABASE_URL=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop_test DATABASE_URL_TEST=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop WORKER_POLL_MS=50 ERP_SIMULATION_DELAY_MS=500 ERP_SIMULATION_MODE=scripted ERP_SIMULATION_SCRIPT=failure,success pnpm --filter api start",
+    "e2e:api:paused": "cross-env DATABASE_URL=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop_test DATABASE_URL_TEST=postgresql://casecellshop:casecellshop@127.0.0.1:5432/casecellshop WORKER_POLL_MS=50 ERP_SIMULATION_DELAY_MS=32000 ERP_SIMULATION_MODE=success ERP_SIMULATION_SCRIPT=failure,success pnpm --filter api start",
+    "e2e:success": "pnpm db:reset:test && concurrently --kill-others --success command-test --names api,web,test \"pnpm e2e:api:success\" \"pnpm e2e:web\" \"wait-on http-get://127.0.0.1:3001/api/health http-get://127.0.0.1:3000 && playwright test --grep @success\"",
+    "e2e:scripted": "pnpm db:reset:test && concurrently --kill-others --success command-test --names api,web,test \"pnpm e2e:api:scripted\" \"pnpm e2e:web\" \"wait-on http-get://127.0.0.1:3001/api/health http-get://127.0.0.1:3000 && playwright test --grep @scripted\"",
+    "e2e:paused": "pnpm db:reset:test && concurrently --kill-others --success command-test --names api,web,test \"pnpm e2e:api:paused\" \"pnpm e2e:web\" \"wait-on http-get://127.0.0.1:3001/api/health http-get://127.0.0.1:3000 && playwright test --grep @paused\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "concurrently": "^10.0.4",
+    "cross-env": "^10.1.0",
+    "wait-on": "^9.1.0"
+  }
+}

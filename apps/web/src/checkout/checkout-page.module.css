@@ -1,0 +1,102 @@
+.page {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 64px 0;
+  color: #17211b;
+}
+
+.page header {
+  margin-bottom: 32px;
+}
+
+.page h1 {
+  margin: 4px 0 12px;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1;
+}
+
+.eyebrow {
+  color: #26734d;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.checkout {
+  display: grid;
+  gap: 24px;
+}
+
+.checkout fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.checkout legend {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.checkout ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkout li label {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #c9d5ce;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.checkout li label:has(input:checked) {
+  border-color: #26734d;
+  box-shadow: 0 0 0 2px #bfe6d0;
+}
+
+.checkout li label > span {
+  display: grid;
+  gap: 4px;
+}
+
+.checkout input[type="number"] {
+  display: block;
+  width: 140px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid #89978f;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.checkout button {
+  justify-self: start;
+  min-width: 160px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #185c3b;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout button:disabled,
+.checkout fieldset:disabled label {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.checkout [role="alert"] {
+  color: #a12c20;
+  font-weight: 600;
+}

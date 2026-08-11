@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+overrides:
+  js-yaml: 5.2.2
+  find-my-way: 9.7.0
+allowBuilds:
+  '@scarf/scarf': false
+  msw: true
+  unrs-resolver: true
