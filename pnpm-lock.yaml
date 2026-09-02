@@ -61,8 +61,8 @@ importers:
         specifier: ^17.4.2
         version: 17.4.2
       fastify:
-        specifier: 5.11.0
-        version: 5.11.0
+        specifier: 5.12.1
+        version: 5.12.1
       pg:
         specifier: ^8.23.0
         version: 8.23.0
@@ -2644,6 +2644,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2762,6 +2763,9 @@ packages:
 
   fastify@5.11.0:
     resolution: {integrity: sha512-Y/Ecx1yt0hYzrQR+QVLbxaUN8wCX+MQzMevh29r5RRvlOIArmi4+WAXXaGl5Hw5gBr2wduZpZaT3gRCnXoyVgA==}
+
+  fastify@5.12.1:
+    resolution: {integrity: sha512-FWi+tQvwxR/PeRX7Z2mhfEF5ozJ3jn9asiiclzKXNSzJRHAYcU924aIOKAdHFJ+YIKieh3cqr1IwCOvTr41B3Q==}
 
   fastq@1.20.1:
     resolution: {integrity: sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==}
@@ -7978,6 +7982,24 @@ snapshots:
   fastify-plugin@6.0.0: {}
 
   fastify@5.11.0:
+    dependencies:
+      '@fastify/ajv-compiler': 4.0.6
+      '@fastify/error': 4.2.0
+      '@fastify/fast-json-stringify-compiler': 5.1.0
+      '@fastify/proxy-addr': 5.1.0
+      abstract-logging: 2.0.1
+      avvio: 9.3.0
+      fast-json-stringify: 7.0.1
+      find-my-way: 9.7.0
+      light-my-request: 6.6.0
+      pino: 10.3.1
+      process-warning: 5.1.0
+      rfdc: 1.4.1
+      secure-json-parse: 4.1.0
+      semver: 7.8.5
+      toad-cache: 3.7.4
+
+  fastify@5.12.1:
     dependencies:
       '@fastify/ajv-compiler': 4.0.6
       '@fastify/error': 4.2.0
